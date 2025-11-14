@@ -1,0 +1,45 @@
+# 1: Regulatory Compliance Audit
+# Goal: Trace the lineage of a financial metric (e.g., Risk #Weighted Assets) to verify its source systems, #transformations, and responsible data stewards.
+
+PREFIX kgdl: <https://www.knowledgegraph.tech/finlineage/ontology/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?dataAsset ?system ?transformation ?column ?person
+WHERE {
+  ?dataAsset a kgdl:DataAsset ;
+             kgdl:hostedOn ?system ;
+             kgdl:transformedBy ?transformation ;
+             kgdl:hasColumn ?column ;
+             kgdl:ownedBy ?person .
+
+  ?dataAsset ?labelProp "ActiveCustomersWithRegion"^^xsd:string .
+}
+
+# 2: Use Case 2: Impact Analysis for Schema Change
+# Goal: Identify downstream systems and reports affected by a change in a source table or column.
+
+PREFIX kgdl: <https://www.knowledgegraph.tech/finlineage/ontology/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?sourceColumn ?downstreamAsset ?downstreamSystem ?report
+WHERE {
+  # Match any of the three source columns by label
+  VALUES ?columnLabel {
+    "regionIDs"^^xsd:string
+    "regionCode"^^xsd:string
+    "CustomerID"^^xsd:string
+  }
+
+  ?sourceColumn ?labelProp ?columnLabel .
+
+  # Find downstream data assets that use the column
+  ?downstreamAsset kgdl:hasColumn ?sourceColumn ;
+                   kgdl:hostedOn ?downstreamSystem .
+
+  # Optionally find reports that consume those assets
+  OPTIONAL {
+    ?report kgdl:consumes ?downstreamAsset .
+  }
+}
+
+

@@ -1,0 +1,241 @@
+{
+  "nodes": [
+    {
+      "id": "n0",
+      "position": {
+        "x": 318.81293326887806,
+        "y": 151.01486604870914
+      },
+      "caption": null,
+      "labels": [
+        "DataAsset"
+      ],
+      "properties": {
+        "name": "CustomerTable",
+        "creationDate": "2023-01-15",
+        "recordCount": "120000"
+      },
+      "style": {
+        "background-color": "#f28b82",
+        "node-color": "#73d8ff",
+        "border-color": "#73d8ff"
+      }
+    },
+    {
+      "id": "n1",
+      "position": {
+        "x": 569.9530586930574,
+        "y": 125.78356116516417
+      },
+      "caption": null,
+      "labels": [
+        "Column"
+      ],
+      "properties": {
+        "name": "CustomerID",
+        "dataType": "STRING",
+        "nullable": "false"
+      },
+      "style": {
+        "background-color": "#fff3cd",
+        "node-color": "#fcdc00",
+        "border-color": "#fcdc00"
+      }
+    },
+    {
+      "id": "n2",
+      "position": {
+        "x": 255.85874177163726,
+        "y": 425.41681880869703
+      },
+      "caption": null,
+      "labels": [
+        "System"
+      ],
+      "properties": {
+        "name": "Snowflake",
+        "region": "us-west-2",
+        "storageTier": "Standard"
+      },
+      "style": {
+        "background-color": "#d4edda",
+        "node-color": "#a4dd00",
+        "border-color": "#a4dd00"
+      }
+    },
+    {
+      "id": "n3",
+      "position": {
+        "x": -3.4814830386529003,
+        "y": 31.784441701098437
+      },
+      "caption": null,
+      "labels": [
+        "Transformation"
+      ],
+      "properties": {
+        "name": "Transform123",
+        "logic": "Join CustomerTable with RegionTable and filter active customers",
+        "lastRun": "2025-10-01"
+      },
+      "style": {
+        "background-color": "#e2d6f3",
+        "border-color": "#aea1ff",
+        "node-color": "#aea1ff"
+      }
+    },
+    {
+      "id": "n4",
+      "position": {
+        "x": 518.1846961820889,
+        "y": 399.6311266150069
+      },
+      "caption": null,
+      "labels": [
+        "Report"
+      ],
+      "properties": {
+        "name": "CustomerReport",
+        "frequency": "Monthly",
+        "format": "PDF"
+      },
+      "style": {
+        "background-color": "#f8d7da",
+        "border-color": "#f44e3b",
+        "node-color": "#f44e3b"
+      }
+    },
+    {
+      "id": "n5",
+      "position": {
+        "x": 75,
+        "y": 291.78032870340826
+      },
+      "caption": null,
+      "labels": [
+        "Person"
+      ],
+      "properties": {
+        "name": "Alice",
+        "role": "Data Steward",
+        "email": "alice@fintechcorp.com"
+      },
+      "style": {
+        "background-color": "#ffe5b4",
+        "node-color": "#fe9200",
+        "border-color": "#fe9200"
+      }
+    }
+  ],
+  "relationships": [
+    {
+      "id": "n0",
+      "fromId": "n0",
+      "toId": "n1",
+      "type": "hasColumn",
+      "properties": {},
+      "style": {}
+    },
+    {
+      "id": "n1",
+      "fromId": "n0",
+      "toId": "n2",
+      "type": "hostedOn",
+      "properties": {},
+      "style": {}
+    },
+    {
+      "id": "n2",
+      "fromId": "n0",
+      "toId": "n5",
+      "type": "ownedBy",
+      "properties": {},
+      "style": {}
+    },
+    {
+      "id": "n3",
+      "fromId": "n0",
+      "toId": "n3",
+      "type": "transformedBy",
+      "properties": {},
+      "style": {}
+    },
+    {
+      "id": "n4",
+      "fromId": "n3",
+      "toId": "n0",
+      "type": "produces",
+      "properties": {},
+      "style": {}
+    },
+    {
+      "id": "n5",
+      "fromId": "n1",
+      "toId": "n4",
+      "type": "usedIn",
+      "properties": {},
+      "style": {}
+    },
+    {
+      "id": "n6",
+      "fromId": "n4",
+      "toId": "n0",
+      "type": "dependsOn",
+      "properties": {},
+      "style": {}
+    }
+  ],
+  "style": {
+    "font-family": "sans-serif",
+    "background-color": "#ffffff",
+    "background-image": "",
+    "background-size": "100%",
+    "node-color": "#ffffff",
+    "border-width": 4,
+    "border-color": "#000000",
+    "radius": 50,
+    "node-padding": 5,
+    "node-margin": 2,
+    "outside-position": "auto",
+    "node-icon-image": "",
+    "node-background-image": "",
+    "icon-position": "inside",
+    "icon-size": 64,
+    "caption-position": "inside",
+    "caption-max-width": 200,
+    "caption-color": "#000000",
+    "caption-font-size": 50,
+    "caption-font-weight": "normal",
+    "label-position": "inside",
+    "label-display": "pill",
+    "label-color": "#000000",
+    "label-background-color": "#ffffff",
+    "label-border-color": "#000000",
+    "label-border-width": 4,
+    "label-font-size": 40,
+    "label-padding": 5,
+    "label-margin": 4,
+    "directionality": "directed",
+    "detail-position": "inline",
+    "detail-orientation": "parallel",
+    "arrow-width": 5,
+    "arrow-color": "#000000",
+    "margin-start": 5,
+    "margin-end": 5,
+    "margin-peer": 20,
+    "attachment-start": "normal",
+    "attachment-end": "normal",
+    "relationship-icon-image": "",
+    "type-color": "#000000",
+    "type-background-color": "#ffffff",
+    "type-border-color": "#000000",
+    "type-border-width": 0,
+    "type-font-size": 16,
+    "type-padding": 5,
+    "property-position": "outside",
+    "property-alignment": "colon",
+    "property-color": "#000000",
+    "property-font-size": 16,
+    "property-font-weight": "normal"
+  }
+}

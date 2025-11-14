@@ -1,0 +1,52 @@
+# 1. Lineage Query 
+# Which transformations produced DataAsset X?
+
+PREFIX kgdl: <https://www.knowledgegraph.tech/finlineage/ontology/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+SELECT ?transformation ?assetLabel
+WHERE {
+  ?transformation rdf:type kgdl:Transformation ;
+                  kgdl:produces ?asset .
+  ?asset rdfs:label ?assetLabel .
+  FILTER(?asset = kgdl:DataAssetX)
+}
+
+# 2. Governance Query 
+# Which datasets belong to CustomerDomainGroup?
+
+PREFIX kgdl: <https://www.knowledgegraph.tech/finlineage/ontology/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT ?dataset ?label
+WHERE {
+  ?dataset rdf:type kgdl:DataAsset ;
+           kgdl:memberOfGroup kgdl:CustomerDomainGroup ;
+           rdfs:label ?label .
+}
+
+# 3. Reporting Query 
+# List all reports produced in October 2025, with their RiskCategory.
+
+PREFIX kgdl: <https://www.knowledgegraph.tech/finlineage/ontology/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?report ?label ?time ?riskLabel
+WHERE {
+  ?event rdf:type kgdl:ReportRunEvent ;
+         kgdl:produces ?report ;
+         prov:startedAtTime ?time .
+  ?report rdf:type kgdl:Report ;
+          rdfs:label ?label ;
+          kgdl:hasRiskCategory ?risk .
+  ?risk rdfs:label ?riskLabel .
+
+  FILTER (?time >= "2025-10-01T00:00:00"^^xsd:dateTime &&
+          ?time <  "2025-11-01T00:00:00"^^xsd:dateTime)
+}
+ORDER BY ?riskLabel ?time
+
+      
