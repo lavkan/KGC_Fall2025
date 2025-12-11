@@ -1,0 +1,76 @@
+#################################################################
+#   MC3 – Reasoning Axioms
+#################################################################
+
+@prefix ex: <http://example.org/> .
+@prefix kgdl: <https://www.knowledgegraph.tech/finlineage/ontology/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+<https://www.knowledgegraph.tech/finDataLineage/axiom>
+    rdf:type owl:Ontology ;
+    owl:imports <https://www.knowledgegraph.tech/finDataLineage/tbox> .
+
+### Transaction threshold rule (Slide 5)
+# Any Transaction with hasAmount >= 10M is a HighValueTransaction
+[ rdf:type owl:Restriction ;
+  owl:onProperty ex:hasAmount ;
+  owl:someValuesFrom [
+    rdf:type rdfs:Datatype ;
+    owl:onDatatype xsd:decimal ;
+    owl:withRestrictions ( [ xsd:minInclusive "10000000"^^xsd:decimal ] )
+  ]
+] rdfs:subClassOf ex:HighValueTransaction .
+
+### Reasoning Axioms for HighRiskCompany (Slide 4)
+
+# Companies exposed to CreditRisk are HighRisk
+[ rdf:type owl:Class ;
+  owl:intersectionOf ( ex:Company
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty ex:exposedToRisk ;
+                         owl:someValuesFrom kgdl:CreditRisk
+                       ]
+                     )
+] rdfs:subClassOf ex:HighRiskCompany .
+
+# Companies owning a SanctionedEntity are HighRisk
+[ rdf:type owl:Class ;
+  owl:intersectionOf ( ex:Company
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty ex:owns ;
+                         owl:someValuesFrom ex:SanctionedEntity
+                       ]
+                     )
+] rdfs:subClassOf ex:HighRiskCompany .
+
+# Companies ownedBy some SanctionedEntity are HighRisk
+[ rdf:type owl:Class ;
+  owl:intersectionOf ( ex:Company
+    [ rdf:type owl:Restriction ;
+      owl:onProperty ex:ownedBy ;
+      owl:someValuesFrom ex:SanctionedEntity
+    ]
+  )
+] rdfs:subClassOf ex:HighRiskCompany .
+
+### Equivalent class axiom
+ex:HighRiskCompany owl:equivalentClass [
+  rdf:type owl:Class ;
+  owl:intersectionOf ( ex:Company
+    [ rdf:type owl:Restriction ;
+      owl:onProperty ex:ownedBy ;
+      owl:someValuesFrom ex:SanctionedEntity
+    ]
+  )
+] .
+
+### Property chain axiom
+# If X controls Y and Y owns Z, then X owns Z
+ex:owns owl:propertyChainAxiom ( ex:controls ex:owns ) .
+
+### Disjointness axiom
+ex:SanctionedEntity owl:disjointWith ex:TrustedEntity .
+

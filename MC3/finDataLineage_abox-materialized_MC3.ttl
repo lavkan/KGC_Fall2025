@@ -1,0 +1,504 @@
+@prefix : <https://www.knowledgegraph.tech/finDataLineage/abox#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <https://www.knowledgegraph.tech/finDataLineage/abox> .
+
+<https://www.knowledgegraph.tech/finDataLineage/abox>
+    rdf:type owl:Ontology ;
+    owl:imports <https://www.knowledgegraph.tech/finDataLineage/tbox> ;
+    owl:imports <https://www.knowledgegraph.tech/finDataLineage/axiom> .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://example.org/hasTransactionType
+<http://example.org/hasTransactionType> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/regulatedBy
+<http://example.org/regulatedBy> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/subjectOfReport
+<http://example.org/subjectOfReport> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.org/transactedWith
+<http://example.org/transactedWith> rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2000/01/rdf-schema#logic
+rdfs:logic rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/ns/prov#startedAtTime
+<http://www.w3.org/ns/prov#startedAtTime> rdf:type owl:AnnotationProperty .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/columnType
+<https://www.knowledgegraph.tech/finlineage/ontology/columnType> rdf:type owl:AnnotationProperty .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/creationDate
+<https://www.knowledgegraph.tech/finlineage/ontology/creationDate> rdf:type owl:AnnotationProperty .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/dataType
+<https://www.knowledgegraph.tech/finlineage/ontology/dataType> rdf:type owl:AnnotationProperty .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/dependsOn
+<https://www.knowledgegraph.tech/finlineage/ontology/dependsOn> rdf:type owl:AnnotationProperty .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/email
+<https://www.knowledgegraph.tech/finlineage/ontology/email> rdf:type owl:AnnotationProperty .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/format
+<https://www.knowledgegraph.tech/finlineage/ontology/format> rdf:type owl:AnnotationProperty .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/frequency
+<https://www.knowledgegraph.tech/finlineage/ontology/frequency> rdf:type owl:AnnotationProperty .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/hasColumn
+<https://www.knowledgegraph.tech/finlineage/ontology/hasColumn> rdf:type owl:AnnotationProperty .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/hasRiskCategory
+<https://www.knowledgegraph.tech/finlineage/ontology/hasRiskCategory> rdf:type owl:AnnotationProperty .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/hostedOn
+<https://www.knowledgegraph.tech/finlineage/ontology/hostedOn> rdf:type owl:AnnotationProperty .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/lastRun
+<https://www.knowledgegraph.tech/finlineage/ontology/lastRun> rdf:type owl:AnnotationProperty .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/logic
+<https://www.knowledgegraph.tech/finlineage/ontology/logic> rdf:type owl:AnnotationProperty .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/memberOfGroup
+<https://www.knowledgegraph.tech/finlineage/ontology/memberOfGroup> rdf:type owl:AnnotationProperty .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/name
+<https://www.knowledgegraph.tech/finlineage/ontology/name> rdf:type owl:AnnotationProperty .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/nullable
+<https://www.knowledgegraph.tech/finlineage/ontology/nullable> rdf:type owl:AnnotationProperty .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/ownedBy
+<https://www.knowledgegraph.tech/finlineage/ontology/ownedBy> rdf:type owl:AnnotationProperty .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/produces
+<https://www.knowledgegraph.tech/finlineage/ontology/produces> rdf:type owl:AnnotationProperty .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/recordCount
+<https://www.knowledgegraph.tech/finlineage/ontology/recordCount> rdf:type owl:AnnotationProperty .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/region
+<https://www.knowledgegraph.tech/finlineage/ontology/region> rdf:type owl:AnnotationProperty .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/role
+<https://www.knowledgegraph.tech/finlineage/ontology/role> rdf:type owl:AnnotationProperty .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/storageTier
+<https://www.knowledgegraph.tech/finlineage/ontology/storageTier> rdf:type owl:AnnotationProperty .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/transformedBy
+<https://www.knowledgegraph.tech/finlineage/ontology/transformedBy> rdf:type owl:AnnotationProperty .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/usedIn
+<https://www.knowledgegraph.tech/finlineage/ontology/usedIn> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://example.org/Company
+<http://example.org/Company> rdf:type owl:Class .
+
+
+###  http://example.org/HighRiskCompany
+<http://example.org/HighRiskCompany> rdf:type owl:Class ;
+                                     rdfs:subClassOf <http://example.org/Company> .
+
+
+###  http://example.org/HighValueTransaction
+<http://example.org/HighValueTransaction> rdf:type owl:Class .
+
+
+###  http://example.org/Regulation
+<http://example.org/Regulation> rdf:type owl:Class .
+
+
+###  http://example.org/SanctionedEntity
+<http://example.org/SanctionedEntity> rdf:type owl:Class .
+
+
+###  http://example.org/Transaction
+<http://example.org/Transaction> rdf:type owl:Class .
+
+
+###  http://example.org/TransactionType
+<http://example.org/TransactionType> rdf:type owl:Class ;
+                                     rdfs:label "Transaction Type" .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/Column
+<https://www.knowledgegraph.tech/finlineage/ontology/Column> rdf:type owl:Class .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/DataAsset
+<https://www.knowledgegraph.tech/finlineage/ontology/DataAsset> rdf:type owl:Class .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/DatasetGroup
+<https://www.knowledgegraph.tech/finlineage/ontology/DatasetGroup> rdf:type owl:Class .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/IntegerColumn
+<https://www.knowledgegraph.tech/finlineage/ontology/IntegerColumn> rdf:type owl:Class .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/Person
+<https://www.knowledgegraph.tech/finlineage/ontology/Person> rdf:type owl:Class .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/Report
+<https://www.knowledgegraph.tech/finlineage/ontology/Report> rdf:type owl:Class .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/ReportRunEvent
+<https://www.knowledgegraph.tech/finlineage/ontology/ReportRunEvent> rdf:type owl:Class .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/System
+<https://www.knowledgegraph.tech/finlineage/ontology/System> rdf:type owl:Class .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/Transformation
+<https://www.knowledgegraph.tech/finlineage/ontology/Transformation> rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://example.org/BaselIII
+<http://example.org/BaselIII> rdf:type owl:NamedIndividual ,
+                                       <http://example.org/Regulation> ;
+                              rdfs:label "Basel III Regulation" .
+
+
+###  http://example.org/CompanyA
+<http://example.org/CompanyA> rdf:type owl:NamedIndividual ,
+                                       <http://example.org/Company> ,
+                                       <http://example.org/HighRiskCompany> ;
+                              rdfs:label "Company A" .
+
+
+###  http://example.org/GoldmanSachs
+<http://example.org/GoldmanSachs> rdf:type owl:NamedIndividual ,
+                                           <http://example.org/Company> ,
+                                           <http://example.org/HighRiskCompany> ;
+                                  <http://example.org/regulatedBy> <http://example.org/BaselIII> ;
+                                  rdfs:label "Goldman Sachs" .
+
+
+###  http://example.org/HighValueTransaction
+<http://example.org/HighValueTransaction> rdf:type owl:NamedIndividual ,
+                                                   <http://example.org/TransactionType> .
+
+
+###  http://example.org/SanctionedEntityB
+<http://example.org/SanctionedEntityB> rdf:type owl:NamedIndividual ,
+                                                <http://example.org/SanctionedEntity> ;
+                                       rdfs:label "Sanctioned Entity B" .
+
+
+###  http://example.org/Txn123
+<http://example.org/Txn123> rdf:type owl:NamedIndividual ,
+                                     <http://example.org/HighValueTransaction> ,
+                                     <http://example.org/Transaction> ;
+                            <http://example.org/hasTransactionType> <http://example.org/HighValueTransaction> ;
+                            <http://example.org/transactedWith> <http://example.org/GoldmanSachs> ;
+                            rdfs:label "Transaction 123" .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/ActiveCustomersWithRegion
+<https://www.knowledgegraph.tech/finlineage/ontology/ActiveCustomersWithRegion> rdf:type owl:NamedIndividual ,
+                                                                                         <https://www.knowledgegraph.tech/finlineage/ontology/DataAsset> ;
+                                                                                rdfs:comment "ACTIVE CUSTOMERS WITH REGION" ;
+                                                                                rdfs:label "ActiveCustomersWithRegion" ;
+                                                                                <https://www.knowledgegraph.tech/finlineage/ontology/creationDate> "2023-01-16T00:00:00Z"^^xsd:dateTime ;
+                                                                                <https://www.knowledgegraph.tech/finlineage/ontology/hasColumn> <https://www.knowledgegraph.tech/finlineage/ontology/CustomerID> ,
+                                                                                                                                                <https://www.knowledgegraph.tech/finlineage/ontology/regionCode> ;
+                                                                                <https://www.knowledgegraph.tech/finlineage/ontology/hostedOn> <https://www.knowledgegraph.tech/finlineage/ontology/Snowflake> ;
+                                                                                <https://www.knowledgegraph.tech/finlineage/ontology/ownedBy> <https://www.knowledgegraph.tech/finlineage/ontology/alice> ;
+                                                                                <https://www.knowledgegraph.tech/finlineage/ontology/recordCount> 10000 ;
+                                                                                <https://www.knowledgegraph.tech/finlineage/ontology/transformedBy> <https://www.knowledgegraph.tech/finlineage/ontology/CleanseCustomerData> .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/CleanseCustomerData
+<https://www.knowledgegraph.tech/finlineage/ontology/CleanseCustomerData> rdf:type owl:NamedIndividual ,
+                                                                                   <https://www.knowledgegraph.tech/finlineage/ontology/Transformation> ;
+                                                                          rdfs:label "CleanseCustomerData" ;
+                                                                          <https://www.knowledgegraph.tech/finlineage/ontology/lastRun> "2023-01-03T00:00:00Z"^^xsd:dateTime ;
+                                                                          <https://www.knowledgegraph.tech/finlineage/ontology/logic> "join clean customer table with risk factors" ;
+                                                                          <https://www.knowledgegraph.tech/finlineage/ontology/name> "CleanseCustomerData" ;
+                                                                          <https://www.knowledgegraph.tech/finlineage/ontology/produces> <https://www.knowledgegraph.tech/finlineage/ontology/cleanActiveCustomerData> .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/CreditReport1
+<https://www.knowledgegraph.tech/finlineage/ontology/CreditReport1> rdf:type owl:NamedIndividual ,
+                                                                             <https://www.knowledgegraph.tech/finlineage/ontology/Report> ;
+                                                                    rdfs:label "October Credit Risk Report" ;
+                                                                    <https://www.knowledgegraph.tech/finlineage/ontology/hasRiskCategory> <https://www.knowledgegraph.tech/finlineage/ontology/CreditRisk> .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/CustomerDomainGroup
+<https://www.knowledgegraph.tech/finlineage/ontology/CustomerDomainGroup> rdf:type owl:NamedIndividual ,
+                                                                                   <https://www.knowledgegraph.tech/finlineage/ontology/DatasetGroup> ;
+                                                                          rdfs:label "Customer Domain Group" .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/CustomerHistory
+<https://www.knowledgegraph.tech/finlineage/ontology/CustomerHistory> rdf:type owl:NamedIndividual ,
+                                                                               <https://www.knowledgegraph.tech/finlineage/ontology/DataAsset> ;
+                                                                      rdfs:label "Customer Transaction History" ;
+                                                                      <https://www.knowledgegraph.tech/finlineage/ontology/memberOfGroup> <https://www.knowledgegraph.tech/finlineage/ontology/CustomerDomainGroup> .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/CustomerID
+<https://www.knowledgegraph.tech/finlineage/ontology/CustomerID> rdf:type owl:NamedIndividual ,
+                                                                          <https://www.knowledgegraph.tech/finlineage/ontology/Column> ;
+                                                                 rdfs:label "CustomerID" ;
+                                                                 <https://www.knowledgegraph.tech/finlineage/ontology/dataType> "STRING" ;
+                                                                 <https://www.knowledgegraph.tech/finlineage/ontology/name> "CustomerID" ;
+                                                                 <https://www.knowledgegraph.tech/finlineage/ontology/nullable> "false"^^xsd:boolean ;
+                                                                 <https://www.knowledgegraph.tech/finlineage/ontology/usedIn> <https://www.knowledgegraph.tech/finlineage/ontology/RiskReport> .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/CustomerTable
+<https://www.knowledgegraph.tech/finlineage/ontology/CustomerTable> rdf:type owl:NamedIndividual ,
+                                                                             <https://www.knowledgegraph.tech/finlineage/ontology/DataAsset> ;
+                                                                    rdfs:label "CustomerTable" ;
+                                                                    <https://www.knowledgegraph.tech/finlineage/ontology/creationDate> "2023-01-15T00:00:00Z"^^xsd:dateTime ;
+                                                                    <https://www.knowledgegraph.tech/finlineage/ontology/hasColumn> <https://www.knowledgegraph.tech/finlineage/ontology/CustomerID> ,
+                                                                                                                                    <https://www.knowledgegraph.tech/finlineage/ontology/regionCode> ;
+                                                                    <https://www.knowledgegraph.tech/finlineage/ontology/hostedOn> <https://www.knowledgegraph.tech/finlineage/ontology/Snowflake> ;
+                                                                    <https://www.knowledgegraph.tech/finlineage/ontology/memberOfGroup> <https://www.knowledgegraph.tech/finlineage/ontology/CustomerDomainGroup> ;
+                                                                    <https://www.knowledgegraph.tech/finlineage/ontology/name> "CustomerTable" ;
+                                                                    <https://www.knowledgegraph.tech/finlineage/ontology/ownedBy> <https://www.knowledgegraph.tech/finlineage/ontology/alice> ;
+                                                                    <https://www.knowledgegraph.tech/finlineage/ontology/recordCount> 120000 ;
+                                                                    <https://www.knowledgegraph.tech/finlineage/ontology/transformedBy> <https://www.knowledgegraph.tech/finlineage/ontology/JoinAndFilterActive> .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/DataAssetX
+<https://www.knowledgegraph.tech/finlineage/ontology/DataAssetX> rdf:type owl:NamedIndividual ,
+                                                                          <https://www.knowledgegraph.tech/finlineage/ontology/DataAsset> ;
+                                                                 rdfs:label "Customer Risk Dataset" .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/JoinAndFilterActive
+<https://www.knowledgegraph.tech/finlineage/ontology/JoinAndFilterActive> rdf:type owl:NamedIndividual ,
+                                                                                   <https://www.knowledgegraph.tech/finlineage/ontology/Transformation> ;
+                                                                          rdfs:label "JoinAndFilterActive" ;
+                                                                          <https://www.knowledgegraph.tech/finlineage/ontology/lastRun> "2025-10-01T00:00:00Z"^^xsd:dateTime ;
+                                                                          <https://www.knowledgegraph.tech/finlineage/ontology/logic> "Join CustomerTable with RegionTable and filter active customers" ;
+                                                                          <https://www.knowledgegraph.tech/finlineage/ontology/name> "JoinAndFilterActiveCustomers" ;
+                                                                          <https://www.knowledgegraph.tech/finlineage/ontology/produces> <https://www.knowledgegraph.tech/finlineage/ontology/ActiveCustomersWithRegion> .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/MonthlyReginalReport
+<https://www.knowledgegraph.tech/finlineage/ontology/MonthlyReginalReport> rdf:type owl:NamedIndividual ,
+                                                                                    <https://www.knowledgegraph.tech/finlineage/ontology/Report> ;
+                                                                           rdfs:label "MonthlyReginalReport" ;
+                                                                           <https://www.knowledgegraph.tech/finlineage/ontology/dependsOn> <https://www.knowledgegraph.tech/finlineage/ontology/ActiveCustomersWithRegion> ;
+                                                                           <https://www.knowledgegraph.tech/finlineage/ontology/format> "PDF" ;
+                                                                           <https://www.knowledgegraph.tech/finlineage/ontology/frequency> "monthly" ;
+                                                                           <https://www.knowledgegraph.tech/finlineage/ontology/name> "MonthlyRegionalReport" .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/OperationalReport1
+<https://www.knowledgegraph.tech/finlineage/ontology/OperationalReport1> rdf:type owl:NamedIndividual ,
+                                                                                  <https://www.knowledgegraph.tech/finlineage/ontology/Report> ;
+                                                                         rdfs:label "October Operational Risk Report" ;
+                                                                         <https://www.knowledgegraph.tech/finlineage/ontology/hasRiskCategory> <https://www.knowledgegraph.tech/finlineage/ontology/OperationalRisk> .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/RegionTable
+<https://www.knowledgegraph.tech/finlineage/ontology/RegionTable> rdf:type owl:NamedIndividual ,
+                                                                           <https://www.knowledgegraph.tech/finlineage/ontology/DataAsset> ;
+                                                                  rdfs:label "RegionTable" ;
+                                                                  <https://www.knowledgegraph.tech/finlineage/ontology/creationDate> "2022-01-01T00:00:00Z"^^xsd:dateTime ;
+                                                                  <https://www.knowledgegraph.tech/finlineage/ontology/hasColumn> <https://www.knowledgegraph.tech/finlineage/ontology/regionCode> ;
+                                                                  <https://www.knowledgegraph.tech/finlineage/ontology/hostedOn> <https://www.knowledgegraph.tech/finlineage/ontology/Snowflake> ;
+                                                                  <https://www.knowledgegraph.tech/finlineage/ontology/name> "region table" ;
+                                                                  <https://www.knowledgegraph.tech/finlineage/ontology/ownedBy> <https://www.knowledgegraph.tech/finlineage/ontology/alice> ;
+                                                                  <https://www.knowledgegraph.tech/finlineage/ontology/recordCount> 250 ;
+                                                                  <https://www.knowledgegraph.tech/finlineage/ontology/transformedBy> <https://www.knowledgegraph.tech/finlineage/ontology/JoinAndFilterActive> .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/ReportRunEvent1
+<https://www.knowledgegraph.tech/finlineage/ontology/ReportRunEvent1> rdf:type owl:NamedIndividual ,
+                                                                               <https://www.knowledgegraph.tech/finlineage/ontology/ReportRunEvent> ;
+                                                                      <http://www.w3.org/ns/prov#startedAtTime> "2025-10-15T09:00:00"^^xsd:dateTime ;
+                                                                      <https://www.knowledgegraph.tech/finlineage/ontology/produces> <https://www.knowledgegraph.tech/finlineage/ontology/RiskReport1> .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/ReportRunEvent2
+<https://www.knowledgegraph.tech/finlineage/ontology/ReportRunEvent2> rdf:type owl:NamedIndividual ,
+                                                                               <https://www.knowledgegraph.tech/finlineage/ontology/ReportRunEvent> ;
+                                                                      <http://www.w3.org/ns/prov#startedAtTime> "2025-10-28T14:30:00"^^xsd:dateTime ;
+                                                                      <https://www.knowledgegraph.tech/finlineage/ontology/produces> <https://www.knowledgegraph.tech/finlineage/ontology/CreditReport1> .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/ReportRunEvent3
+<https://www.knowledgegraph.tech/finlineage/ontology/ReportRunEvent3> rdf:type owl:NamedIndividual ,
+                                                                               <https://www.knowledgegraph.tech/finlineage/ontology/ReportRunEvent> ;
+                                                                      <http://www.w3.org/ns/prov#startedAtTime> "2025-10-05T11:00:00"^^xsd:dateTime ;
+                                                                      <https://www.knowledgegraph.tech/finlineage/ontology/produces> <https://www.knowledgegraph.tech/finlineage/ontology/OperationalReport1> .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/RiskFactors
+<https://www.knowledgegraph.tech/finlineage/ontology/RiskFactors> rdf:type owl:NamedIndividual ,
+                                                                           <https://www.knowledgegraph.tech/finlineage/ontology/DataAsset> ;
+                                                                  rdfs:comment "contains various risk scenerios and factors affecting them with their riskIDs" ;
+                                                                  rdfs:label "RiskFactors" ;
+                                                                  <https://www.knowledgegraph.tech/finlineage/ontology/creationDate> "2021-01-01T00:00:00Z"^^xsd:dateTime ;
+                                                                  <https://www.knowledgegraph.tech/finlineage/ontology/hasColumn> <https://www.knowledgegraph.tech/finlineage/ontology/riskIDs> ;
+                                                                  <https://www.knowledgegraph.tech/finlineage/ontology/name> "Risk Factors" ;
+                                                                  <https://www.knowledgegraph.tech/finlineage/ontology/recordCount> 100 ;
+                                                                  <https://www.knowledgegraph.tech/finlineage/ontology/transformedBy> <https://www.knowledgegraph.tech/finlineage/ontology/WeightCustomersForRisk> .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/RiskReport
+<https://www.knowledgegraph.tech/finlineage/ontology/RiskReport> rdf:type owl:NamedIndividual ,
+                                                                          <https://www.knowledgegraph.tech/finlineage/ontology/Report> ;
+                                                                 rdfs:label "RiskReport" ;
+                                                                 <https://www.knowledgegraph.tech/finlineage/ontology/dependsOn> <https://www.knowledgegraph.tech/finlineage/ontology/RiskWeightedCustomers> ;
+                                                                 <https://www.knowledgegraph.tech/finlineage/ontology/format> "Excel" ;
+                                                                 <https://www.knowledgegraph.tech/finlineage/ontology/frequency> "yearly" ;
+                                                                 <https://www.knowledgegraph.tech/finlineage/ontology/name> "RiskReport" .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/RiskReport1
+<https://www.knowledgegraph.tech/finlineage/ontology/RiskReport1> rdf:type owl:NamedIndividual ,
+                                                                           <https://www.knowledgegraph.tech/finlineage/ontology/Report> ;
+                                                                  <http://example.org/subjectOfReport> <http://example.org/GoldmanSachs> ;
+                                                                  rdfs:label "October Market Risk Report" ,
+                                                                             "October Risk Report" ;
+                                                                  <https://www.knowledgegraph.tech/finlineage/ontology/hasRiskCategory> <https://www.knowledgegraph.tech/finlineage/ontology/MarketRisk> .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/RiskWeightedCustomers
+<https://www.knowledgegraph.tech/finlineage/ontology/RiskWeightedCustomers> rdf:type owl:NamedIndividual ,
+                                                                                     <https://www.knowledgegraph.tech/finlineage/ontology/DataAsset> ;
+                                                                            rdfs:label "RiskWeightedCustomers" ;
+                                                                            <https://www.knowledgegraph.tech/finlineage/ontology/creationDate> "2023-01-03T00:00:00Z"^^xsd:dateTimeStamp ;
+                                                                            <https://www.knowledgegraph.tech/finlineage/ontology/hostedOn> <https://www.knowledgegraph.tech/finlineage/ontology/Snowflake> ;
+                                                                            <https://www.knowledgegraph.tech/finlineage/ontology/name> "RiskWeightedCustomers" ;
+                                                                            <https://www.knowledgegraph.tech/finlineage/ontology/ownedBy> <https://www.knowledgegraph.tech/finlineage/ontology/alice> ;
+                                                                            <https://www.knowledgegraph.tech/finlineage/ontology/recordCount> 2000 .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/Snowflake
+<https://www.knowledgegraph.tech/finlineage/ontology/Snowflake> rdf:type owl:NamedIndividual ,
+                                                                         <https://www.knowledgegraph.tech/finlineage/ontology/System> ;
+                                                                rdfs:label "Snowflake" ;
+                                                                <https://www.knowledgegraph.tech/finlineage/ontology/name> "snowflake" ;
+                                                                <https://www.knowledgegraph.tech/finlineage/ontology/region> "us-west-2" ;
+                                                                <https://www.knowledgegraph.tech/finlineage/ontology/storageTier> "Standard" .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/Transformation123
+<https://www.knowledgegraph.tech/finlineage/ontology/Transformation123> rdf:type owl:NamedIndividual ,
+                                                                                 <https://www.knowledgegraph.tech/finlineage/ontology/Transformation> ;
+                                                                        <https://www.knowledgegraph.tech/finlineage/ontology/produces> <https://www.knowledgegraph.tech/finlineage/ontology/DataAssetX> .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/WeightCustomersForRisk
+<https://www.knowledgegraph.tech/finlineage/ontology/WeightCustomersForRisk> rdf:type owl:NamedIndividual ,
+                                                                                      <https://www.knowledgegraph.tech/finlineage/ontology/Transformation> ;
+                                                                             rdfs:label "WeightCustomersForRisk" ;
+                                                                             rdfs:logic "Join clean active customer data with riskFactors" ;
+                                                                             <https://www.knowledgegraph.tech/finlineage/ontology/lastRun> "2023-01-04T00:00:00Z"^^xsd:dateTime ;
+                                                                             <https://www.knowledgegraph.tech/finlineage/ontology/name> "WeightCustomersForRisk" ;
+                                                                             <https://www.knowledgegraph.tech/finlineage/ontology/produces> <https://www.knowledgegraph.tech/finlineage/ontology/RiskWeightedCustomers> .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/alice
+<https://www.knowledgegraph.tech/finlineage/ontology/alice> rdf:type owl:NamedIndividual ,
+                                                                     <https://www.knowledgegraph.tech/finlineage/ontology/Person> ;
+                                                            rdfs:label "alice" ;
+                                                            <https://www.knowledgegraph.tech/finlineage/ontology/email> "alice@fintechcorp.com" ;
+                                                            <https://www.knowledgegraph.tech/finlineage/ontology/name> "Alice" ;
+                                                            <https://www.knowledgegraph.tech/finlineage/ontology/role> "Data Steward" .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/cleanActiveCustomerData
+<https://www.knowledgegraph.tech/finlineage/ontology/cleanActiveCustomerData> rdf:type owl:NamedIndividual ,
+                                                                                       <https://www.knowledgegraph.tech/finlineage/ontology/DataAsset> ;
+                                                                              rdfs:label "cleanActiveCustomerData" ;
+                                                                              <https://www.knowledgegraph.tech/finlineage/ontology/creationDate> "2023-12-15T00:00:00Z"^^xsd:dateTime ;
+                                                                              <https://www.knowledgegraph.tech/finlineage/ontology/hasColumn> <https://www.knowledgegraph.tech/finlineage/ontology/CustomerID> ,
+                                                                                                                                              <https://www.knowledgegraph.tech/finlineage/ontology/regionCode> ,
+                                                                                                                                              <https://www.knowledgegraph.tech/finlineage/ontology/riskIDs> ;
+                                                                              <https://www.knowledgegraph.tech/finlineage/ontology/hostedOn> <https://www.knowledgegraph.tech/finlineage/ontology/Snowflake> ;
+                                                                              <https://www.knowledgegraph.tech/finlineage/ontology/name> "clean active customer data" ;
+                                                                              <https://www.knowledgegraph.tech/finlineage/ontology/ownedBy> <https://www.knowledgegraph.tech/finlineage/ontology/alice> ;
+                                                                              <https://www.knowledgegraph.tech/finlineage/ontology/recordCount> 1000 ;
+                                                                              <https://www.knowledgegraph.tech/finlineage/ontology/transformedBy> <https://www.knowledgegraph.tech/finlineage/ontology/WeightCustomersForRisk> .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/regionCode
+<https://www.knowledgegraph.tech/finlineage/ontology/regionCode> rdf:type owl:NamedIndividual ,
+                                                                          <https://www.knowledgegraph.tech/finlineage/ontology/Column> ;
+                                                                 rdfs:label "regionCode" ;
+                                                                 <https://www.knowledgegraph.tech/finlineage/ontology/dataType> "string" ;
+                                                                 <https://www.knowledgegraph.tech/finlineage/ontology/name> "region codes" ;
+                                                                 <https://www.knowledgegraph.tech/finlineage/ontology/nullable> "false"^^xsd:boolean ;
+                                                                 <https://www.knowledgegraph.tech/finlineage/ontology/usedIn> <https://www.knowledgegraph.tech/finlineage/ontology/RiskReport> .
+
+
+###  https://www.knowledgegraph.tech/finlineage/ontology/riskIDs
+<https://www.knowledgegraph.tech/finlineage/ontology/riskIDs> rdf:type owl:NamedIndividual ,
+                                                                       <https://www.knowledgegraph.tech/finlineage/ontology/IntegerColumn> ;
+                                                              rdfs:comment "contains risk IDs and how they are computed from customer data" ;
+                                                              rdfs:label "riskIDs" ;
+                                                              <https://www.knowledgegraph.tech/finlineage/ontology/columnType> 1 ;
+                                                              <https://www.knowledgegraph.tech/finlineage/ontology/name> "riskIDs" ;
+                                                              <https://www.knowledgegraph.tech/finlineage/ontology/nullable> "true"^^xsd:boolean ;
+                                                              <https://www.knowledgegraph.tech/finlineage/ontology/usedIn> <https://www.knowledgegraph.tech/finlineage/ontology/RiskReport> .
+
+
+#################################################################
+#    Annotations
+#################################################################
+
+<http://example.org/HighValueTransaction> rdfs:label "High Value Transaction" .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi

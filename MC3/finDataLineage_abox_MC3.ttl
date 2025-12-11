@@ -1,0 +1,312 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix kgdl: <https://www.knowledgegraph.tech/finlineage/ontology/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ex: <http://example.org/> .
+
+
+
+<https://www.knowledgegraph.tech/finDataLineage/abox>
+    rdf:type owl:Ontology ;
+    owl:imports <https://www.knowledgegraph.tech/finDataLineage/tbox> ;
+    owl:imports <https://www.knowledgegraph.tech/finDataLineage/axiom> .
+
+#################################################################
+#   ABox – Instance Data
+#################################################################
+
+
+
+          #################################################################
+          #    Individuals
+          #################################################################
+
+          ###  https://www.knowledgegraph.tech/finlineage/ontology/ActiveCustomersWithRegion
+          kgdl:ActiveCustomersWithRegion rdf:type owl:NamedIndividual ,
+                                                  kgdl:DataAsset ;
+                                        kgdl:hasColumn kgdl:CustomerID ,
+                                                        kgdl:regionCode ;
+                                        kgdl:hostedOn kgdl:Snowflake ;
+                                        kgdl:ownedBy kgdl:alice ;
+                                        kgdl:transformedBy kgdl:CleanseCustomerData ;
+                                        kgdl:creationDate "2023-01-16T00:00:00Z"^^xsd:dateTime ;
+                                        kgdl:recordCount 10000 ;
+                                        rdfs:comment "ACTIVE CUSTOMERS WITH REGION" ;
+                                        rdfs:label "ActiveCustomersWithRegion" .
+
+
+          ###  https://www.knowledgegraph.tech/finlineage/ontology/CleanseCustomerData
+          kgdl:CleanseCustomerData rdf:type owl:NamedIndividual ,
+                                            kgdl:Transformation ;
+                                  kgdl:produces kgdl:cleanActiveCustomerData ;
+                                  kgdl:lastRun "2023-01-03T00:00:00Z"^^xsd:dateTime ;
+                                  kgdl:logic "join clean customer table with risk factors" ;
+                                  kgdl:name "CleanseCustomerData" ;
+                                  rdfs:label "CleanseCustomerData" .
+
+
+          ###  https://www.knowledgegraph.tech/finlineage/ontology/CustomerID
+          kgdl:CustomerID rdf:type owl:NamedIndividual ,
+                                  kgdl:Column ;
+                          kgdl:usedIn kgdl:RiskReport ;
+                          kgdl:dataType "STRING" ;
+                          kgdl:name "CustomerID" ;
+                          kgdl:nullable "false"^^xsd:boolean ;
+                          rdfs:label "CustomerID" .
+
+
+          ###  https://www.knowledgegraph.tech/finlineage/ontology/CustomerTable
+          kgdl:CustomerTable rdf:type owl:NamedIndividual ,
+                                      kgdl:DataAsset ;
+                            kgdl:memberOfGroup kgdl:CustomerDomainGroup ;
+                            kgdl:hasColumn kgdl:CustomerID ,
+                                            kgdl:regionCode ;
+                            kgdl:hostedOn kgdl:Snowflake ;
+                            kgdl:ownedBy kgdl:alice ;
+                            kgdl:transformedBy kgdl:JoinAndFilterActive ;
+                            kgdl:creationDate "2023-01-15T00:00:00Z"^^xsd:dateTime ;
+                            kgdl:name "CustomerTable" ;
+                            kgdl:recordCount 120000 ;
+                            rdfs:label "CustomerTable" .
+
+        kgdl:CustomerDomainGroup rdf:type kgdl:DatasetGroup ;
+                         rdfs:label "Customer Domain Group" .
+                   
+          ###  https://www.knowledgegraph.tech/finlineage/ontology/JoinAndFilterActive
+          kgdl:JoinAndFilterActive rdf:type owl:NamedIndividual ,
+                                            kgdl:Transformation ;
+                                  kgdl:produces kgdl:ActiveCustomersWithRegion ;
+                                  kgdl:lastRun "2025-10-01T00:00:00Z"^^xsd:dateTime ;
+                                  kgdl:logic "Join CustomerTable with RegionTable and filter active customers" ;
+                                  kgdl:name "JoinAndFilterActiveCustomers" ;
+                                  rdfs:label "JoinAndFilterActive" .
+
+
+          ###  https://www.knowledgegraph.tech/finlineage/ontology/MonthlyReginalReport
+          kgdl:MonthlyReginalReport rdf:type owl:NamedIndividual ,
+                                            kgdl:Report ;
+                                    kgdl:dependsOn kgdl:ActiveCustomersWithRegion ;
+                                    kgdl:format "PDF" ;
+                                    kgdl:frequency "monthly" ;
+                                    kgdl:name "MonthlyRegionalReport" ;
+                                    rdfs:label "MonthlyReginalReport" .
+
+
+          ###  https://www.knowledgegraph.tech/finlineage/ontology/RegionTable
+          kgdl:RegionTable rdf:type owl:NamedIndividual ,
+                                    kgdl:DataAsset ;
+                          kgdl:hasColumn kgdl:regionCode ;
+                          kgdl:hostedOn kgdl:Snowflake ;
+                          kgdl:ownedBy kgdl:alice ;
+                          kgdl:transformedBy kgdl:JoinAndFilterActive ;
+                          kgdl:creationDate "2022-01-01T00:00:00Z"^^xsd:dateTime ;
+                          kgdl:name "region table" ;
+                          kgdl:recordCount 250 ;
+                          rdfs:label "RegionTable" .
+
+
+          ###  https://www.knowledgegraph.tech/finlineage/ontology/RiskFactors
+          kgdl:RiskFactors rdf:type owl:NamedIndividual ,
+                                    kgdl:DataAsset ;
+                          kgdl:hasColumn kgdl:riskIDs ;
+                          kgdl:transformedBy kgdl:WeightCustomersForRisk ;
+                          kgdl:creationDate "2021-01-01T00:00:00Z"^^xsd:dateTime ;
+                          kgdl:name "Risk Factors" ;
+                          kgdl:recordCount 100 ;
+                          rdfs:comment "contains various risk scenerios and factors affecting them with their riskIDs" ;
+                          rdfs:label "RiskFactors" .
+
+
+          ###  https://www.knowledgegraph.tech/finlineage/ontology/RiskReport
+          kgdl:RiskReport rdf:type owl:NamedIndividual ,
+                                  kgdl:Report ;
+                          kgdl:dependsOn kgdl:RiskWeightedCustomers ;
+                          kgdl:format "Excel" ;
+                          kgdl:frequency "yearly" ;
+                          kgdl:name "RiskReport" ;
+                          rdfs:label "RiskReport" .
+
+
+          ###  https://www.knowledgegraph.tech/finlineage/ontology/RiskWeightedCustomers
+          kgdl:RiskWeightedCustomers rdf:type owl:NamedIndividual ,
+                                              kgdl:DataAsset ;
+                                    kgdl:hostedOn kgdl:Snowflake ;
+                                    kgdl:ownedBy kgdl:alice ;
+                                    kgdl:creationDate "2023-01-03T00:00:00Z"^^xsd:dateTimeStamp ;
+                                    kgdl:name "RiskWeightedCustomers" ;
+                                    kgdl:recordCount 2000 ;
+                                    rdfs:label "RiskWeightedCustomers" .
+
+
+          ###  https://www.knowledgegraph.tech/finlineage/ontology/Snowflake
+          kgdl:Snowflake rdf:type owl:NamedIndividual ,
+                                  kgdl:System ;
+                        kgdl:name "snowflake" ;
+                        kgdl:region "us-west-2" ;
+                        kgdl:storageTier "Standard" ;
+                        rdfs:label "Snowflake" .
+
+
+          ###  https://www.knowledgegraph.tech/finlineage/ontology/WeightCustomersForRisk
+          kgdl:WeightCustomersForRisk rdf:type owl:NamedIndividual ,
+                                              kgdl:Transformation ;
+                                      kgdl:produces kgdl:RiskWeightedCustomers ;
+                                      kgdl:lastRun "2023-01-04T00:00:00Z"^^xsd:dateTime ;
+                                      kgdl:name "WeightCustomersForRisk" ;
+                                      rdfs:label "WeightCustomersForRisk" ;
+                                      rdfs:logic "Join clean active customer data with riskFactors" .
+
+
+          ###  https://www.knowledgegraph.tech/finlineage/ontology/alice
+          kgdl:alice rdf:type owl:NamedIndividual ,
+                              kgdl:Person ;
+                    kgdl:email "alice@fintechcorp.com" ;
+                    kgdl:name "Alice" ;
+                    kgdl:role "Data Steward" ;
+                    rdfs:label "alice" .
+
+
+          ###  https://www.knowledgegraph.tech/finlineage/ontology/cleanActiveCustomerData
+          kgdl:cleanActiveCustomerData rdf:type owl:NamedIndividual ,
+                                                kgdl:DataAsset ;
+                                      kgdl:hasColumn kgdl:CustomerID ,
+                                                      kgdl:regionCode ,
+                                                      kgdl:riskIDs ;
+                                      kgdl:hostedOn kgdl:Snowflake ;
+                                      kgdl:ownedBy kgdl:alice ;
+                                      kgdl:transformedBy kgdl:WeightCustomersForRisk ;
+                                      kgdl:creationDate "2023-12-15T00:00:00Z"^^xsd:dateTime ;
+                                      kgdl:name "clean active customer data" ;
+                                      kgdl:recordCount 1000 ;
+                                      rdfs:label "cleanActiveCustomerData" .
+
+
+          ###  https://www.knowledgegraph.tech/finlineage/ontology/regionCode
+          kgdl:regionCode rdf:type owl:NamedIndividual ,
+                                  kgdl:Column ;
+                          kgdl:usedIn kgdl:RiskReport ;
+                          kgdl:dataType "string" ;
+                          kgdl:name "region codes" ;
+                          kgdl:nullable "false"^^xsd:boolean ;
+                          rdfs:label "regionCode" .
+
+
+kgdl:riskIDs rdf:type owl:NamedIndividual , kgdl:IntegerColumn ;
+    kgdl:usedIn kgdl:RiskReport ;
+    kgdl:name "riskIDs" ;
+    kgdl:nullable "true"^^xsd:boolean ;
+    rdfs:comment "contains risk IDs and how they are computed from customer data" ;
+    rdfs:label "riskIDs" ;
+    kgdl:columnType "1"^^xsd:integer .
+
+
+
+
+        ### Individuals from the RiskCategory enumeration
+        kgdl:Transformation123 rdf:type kgdl:Transformation ;
+                   kgdl:produces kgdl:DataAssetX .
+
+        kgdl:DataAssetX rdf:type kgdl:DataAsset ;
+            rdfs:label "Customer Risk Dataset" .
+
+        kgdl:CustomerDomainGroup rdf:type kgdl:DatasetGroup ;
+                         rdfs:label "Customer Domain Group" .
+        kgdl:CustomerHistory rdf:type kgdl:DataAsset ;
+                        kgdl:memberOfGroup kgdl:CustomerDomainGroup ;
+                        rdfs:label "Customer Transaction History" .
+
+        kgdl:ReportRunEvent1 rdf:type kgdl:ReportRunEvent ;
+                     kgdl:produces kgdl:RiskReport1 ;
+                     prov:startedAtTime "2025-10-15T09:00:00"^^xsd:dateTime .
+
+        kgdl:RiskReport1 rdf:type kgdl:Report ;
+                        rdfs:label "October Risk Report" .
+
+        kgdl:ReportRunEvent2 rdf:type kgdl:ReportRunEvent ;
+                        kgdl:produces kgdl:CreditReport1 ;
+                        prov:startedAtTime "2025-10-28T14:30:00"^^xsd:dateTime .
+
+        kgdl:CreditReport1 rdf:type kgdl:Report ;
+                        rdfs:label "October Credit Risk Report" .
+
+        kgdl:ReportRunEvent1 rdf:type kgdl:ReportRunEvent ;
+                     kgdl:produces kgdl:RiskReport1 ;
+                     prov:startedAtTime "2025-10-15T09:00:00"^^xsd:dateTime .
+
+        kgdl:RiskReport1 rdf:type kgdl:Report ;
+                        rdfs:label "October Market Risk Report" ;
+                        kgdl:hasRiskCategory kgdl:MarketRisk .
+
+        kgdl:ReportRunEvent2 rdf:type kgdl:ReportRunEvent ;
+                        kgdl:produces kgdl:CreditReport1 ;
+                        prov:startedAtTime "2025-10-28T14:30:00"^^xsd:dateTime .
+
+        kgdl:CreditReport1 rdf:type kgdl:Report ;
+                        rdfs:label "October Credit Risk Report" ;
+                        kgdl:hasRiskCategory kgdl:CreditRisk .
+
+        kgdl:ReportRunEvent3 rdf:type kgdl:ReportRunEvent ;
+                        kgdl:produces kgdl:OperationalReport1 ;
+                        prov:startedAtTime "2025-10-05T11:00:00"^^xsd:dateTime .
+
+        kgdl:OperationalReport1 rdf:type kgdl:Report ;
+                                rdfs:label "October Operational Risk Report" ;
+                                kgdl:hasRiskCategory kgdl:OperationalRisk .
+
+#################################################################
+#   MC3 – Domain Individuals
+#################################################################
+
+### Companies
+ex:GoldmanSachs rdf:type ex:Company ;
+    ex:regulatedBy ex:BaselIII ;
+    ex:exposedToRisk kgdl:CreditRisk ;
+    ex:owns ex:SanctionedEntityB ;
+    rdfs:label "Goldman Sachs" .
+
+# SanctionedEntityB must be typed as a SanctionedEntity (not just Company)
+ex:SanctionedEntityB rdf:type ex:SanctionedEntity ;
+    rdfs:label "Sanctioned Entity B" .
+
+ex:CompanyA rdf:type ex:Company ;
+    ex:ownedBy ex:SanctionedEntityB ;
+    rdfs:label "Company A" .
+
+### Regulation
+ex:BaselIII rdf:type ex:Regulation ;
+    rdfs:label "Basel III Regulation" .
+
+### Transaction + TransactionType
+ex:Txn123 rdf:type ex:Transaction ;
+          ex:hasAmount "12000000"^^xsd:decimal ;
+          ex:transactedWith ex:GoldmanSachs ;
+          ex:hasTransactionType ex:HighValueTransaction ;
+          rdfs:label "Transaction 123" .
+
+# HighValueTransaction as both class and individual (punning)
+ex:HighValueTransaction rdf:type owl:Class ;
+    rdfs:label "High Value Transaction" .
+
+ex:TransactionType rdf:type owl:Class ;
+    rdfs:label "Transaction Type" .
+
+# Punning: HighValueTransaction also treated as a TransactionType individual
+ex:HighValueTransaction rdf:type ex:TransactionType .
+
+### Reports linked to RiskCategory and Company
+kgdl:RiskReport1 rdf:type kgdl:Report ;
+    rdfs:label "October Market Risk Report" ;
+    kgdl:hasRiskCategory kgdl:MarketRisk ;
+    ex:subjectOfReport ex:GoldmanSachs .
+
+kgdl:CreditReport1 rdf:type kgdl:Report ;
+    rdfs:label "October Credit Risk Report" ;
+    kgdl:hasRiskCategory kgdl:CreditRisk .
+
+kgdl:OperationalReport1 rdf:type kgdl:Report ;
+    rdfs:label "October Operational Risk Report" ;
+    kgdl:hasRiskCategory kgdl:OperationalRisk .
